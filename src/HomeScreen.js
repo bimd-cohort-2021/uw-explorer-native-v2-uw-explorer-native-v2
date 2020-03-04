@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Layout, Text, TopNavigation, Divider, TopNavigationAction, Icon} from '@ui-kitten/components';
 import {SafeAreaView} from 'react-native';
 import 'react-native-gesture-handler';
+import MainMenu from "./MainMenu";
 
 const MenuIcon = (style) => (
     <Icon {...style} name='menu-outline' />
@@ -11,16 +12,11 @@ class HomeScreen extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleMenu = this.handleMenu.bind(this);
-    }
-
-    handleMenu() {
-        this.props.navigation.navigate("About");
     }
 
     renderNavigate() {
         return (
-            <TopNavigationAction icon={MenuIcon} onPress={this.handleMenu}/>
+            <MainMenu navigation={this.props.navigation}/>
         );
     }
 

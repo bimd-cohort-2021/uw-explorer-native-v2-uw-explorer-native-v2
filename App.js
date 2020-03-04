@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import HomeScreen from "./src/HomeScreen";
 import AboutScreen from "./src/AboutScreen";
+import CampusScreen from "./src/CampusScreen";
 import settings from "./config";
 import {SafeAreaView} from "react-native-web";
 
@@ -93,6 +94,8 @@ class App extends React.Component {
                             <Stack.Navigator initialRouteName="Home" headerMode='none'>
                                 <Stack.Screen name="Home" component={HomeScreen}/>
                                 <Stack.Screen name="About" component={AboutScreen}/>
+                                <Stack.Screen name="Campus" component={CampusScreen}
+                                    initialParams={this.state}/>
                             </Stack.Navigator>
                         </NavigationContainer>
                     ):(

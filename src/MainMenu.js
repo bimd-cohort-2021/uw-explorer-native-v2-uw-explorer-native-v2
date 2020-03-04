@@ -9,15 +9,19 @@ const MenuIcon = (style) => (
 const data = [
     {
         title: 'About',
+        name: 'About'
     },
     {
-        title: 'Menu Item 2',
+        title: 'Campuses',
+        name: 'Campus'
     },
     {
         title: 'Menu Item 3',
+        name: 'About'
     },
     {
         title: 'Menu Item 4',
+        name: 'About'
     },
 ];
 
@@ -36,9 +40,7 @@ export class MainMenu extends React.Component {
 
     onItemSelect(index)  {
         this.setMenuVisible(false);
-        if (index === 0) {
-            this.props.navigation.navigate("About");
-        }
+        this.props.navigation.navigate(data[index].name);
     };
 
     toggleMenu() {

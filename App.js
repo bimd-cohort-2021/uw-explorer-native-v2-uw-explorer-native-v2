@@ -1,84 +1,110 @@
 import React from 'react';
-import { ApplicationProvider, Icon, IconRegistry, Button, Layout, Text, TopNavigation, Divider, TopNavigationAction} from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry, Spinner, Text} from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
-import {SafeAreaView} from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import HomeScreen from "./src/HomeScreen";
+import AboutScreen from "./src/AboutScreen";
+import settings from "./config";
+import {SafeAreaView} from "react-native-web";
 
 const Stack = createStackNavigator();
 
-const BackIcon = (style) => (
-    <Icon {...style} name='arrow-back' />
-);
-
-class HomeScreen extends React.Component {
+class App extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            campuses: null,
+            colleges: null,
+            loadingFlag: -2,
+        };
     }
 
 
-    render () {
-        const navigation = this.props.navigation;
-        return (
-            <SafeAreaView style={{flex: 1}}>
-                <TopNavigation title="Home" alignmment="center" />
-                <Divider/>
-                <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                  <Text category='h1'>HOME</Text>
-                    <Button title="Details" onPress={() => navigation.navigate("About")}/>
-                </Layout>
-            </SafeAreaView>
-        );
-    }
-}
-
-class AboutScreen extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.handleBack = this.handleBack.bind(this);
+    componentDidMount() {
+        this.loadCampuses();
+        this.loadColleges();
     }
 
-    handleBack() {
-        this.props.navigation.goBack();
+    loadCampuses() {
+        // Initialize call to a web service. The config.json file contains default settings for
+        // this application to use rather than hard-code these into component source files.
+        let url = settings.sws.baseURL + "/student/v5/campus.json";
+
+        // Add a header containing a custom header used by the proxy to authenticate this call
+        let requestInit = {
+            headers: {
+                'Application-Id': settings.sws.applicationID
+            },
+        };
+
+        // Call SWS web service and process results using promises that handle the asynchronous
+        // aspects of the call-- that is the code waits on the previous code as completed through
+        // the "then" phrases. Note that "fetch" makes the AJAX call to the web service.
+        fetch(url, requestInit)
+            .then(res => res.json())
+            .then((data) => {
+                // Update the state of this component so that the data retrieved will be rendered
+                this.setState({ campuses: data, loadingFlag: this.state.loadingFlag+1 });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
     }
 
-    renderNavigateBack() {
-        return (
-            <TopNavigationAction icon={BackIcon} onPress={this.handleBack}/>
-        );
+    loadColleges() {
+        // Initialize call to a web service. The config.json file contains default settings for
+        // this application to use rather than hard-code these into component source files.
+        let url = settings.sws.baseURL + "/student/v5/college.json";
+
+        // Add a header containing a custom header used by the proxy to authenticate this call
+        let requestInit = {
+            headers: {
+                'Application-Id': settings.sws.applicationID
+            },
+        };
+
+        // Call SWS web service and process results using promises that handle the asynchronous
+        // aspects of the call-- that is the code waits on the previous code as completed through
+        // the "then" phrases. Note that "fetch" makes the AJAX call to the web service.
+        fetch(url, requestInit)
+            .then(res => res.json())
+            .then((data) => {
+                // Update the state of this component so that the data retrieved will be rendered
+                this.setState({ colleges: data, loadingFlag: this.state.loadingFlag+1  });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
     }
 
     render() {
         return (
-            <SafeAreaView style={{flex: 1}}>
-                <TopNavigation title="About" alignmment="center" leftControl={this.renderNavigateBack()} />
-                <Divider/>
-                <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <Text category='h1'>About</Text>
-                </Layout>
-            </SafeAreaView>
+            <React.Fragment>
+                <IconRegistry icons={EvaIconsPack}/>
+                <ApplicationProvider mapping={mapping} theme={lightTheme}>
+                    {(this.state.loadingFlag >= 0)?(
+                        <NavigationContainer>
+                            <Stack.Navigator initialRouteName="Home" headerMode='none'>
+                                <Stack.Screen name="Home" component={HomeScreen}/>
+                                <Stack.Screen name="About" component={AboutScreen}/>
+                            </Stack.Navigator>
+                        </NavigationContainer>
+                    ):(
+                        <SafeAreaView style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text>Loading Cache...</Text>
+                            <Spinner/>
+                        </SafeAreaView>
+                        )}
+                </ApplicationProvider>
+            </React.Fragment>
         );
     }
 }
-
-const App = () => (
-    <React.Fragment>
-        <IconRegistry icons={EvaIconsPack}/>
-        <ApplicationProvider mapping={mapping} theme={lightTheme}>
-            <NavigationContainer>
-                <Stack.Navigator initialRouteName="Home" headerMode='none'>
-                    <Stack.Screen name="Home" component={HomeScreen}
-                    />
-                    <Stack.Screen name="About" component={AboutScreen}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </ApplicationProvider>
-    </React.Fragment>
-);
 
 export default App;

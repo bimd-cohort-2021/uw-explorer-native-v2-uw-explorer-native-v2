@@ -29,7 +29,7 @@ class CampusScreen extends React.Component {
             <SafeAreaView style={{flex: 1}}>
                 <TopNavigation title="Campuses" alignmment="center" leftControl={this.renderNavigateBack()} />
                 <Divider/>
-                <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                <Layout style={{flex: 1, padding: 20}}>
                     <Text category='h1'>Campuses</Text>
                     <List data={this.props.route.params.campuses.Campuses}
                           renderItem={({item,index}) => {

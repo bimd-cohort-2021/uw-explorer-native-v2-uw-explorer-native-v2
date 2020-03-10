@@ -29,8 +29,12 @@ class AboutScreen extends React.Component {
             <SafeAreaView style={{flex: 1}}>
                 <TopNavigation title="About" alignmment="center" leftControl={this.renderNavigateBack()} />
                 <Divider/>
-                <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <Text category='h1'>About</Text>
+                <Layout style={{flex: 1,padding:20}}>
+                    <Text category='h1'>About UW Explorer</Text>
+                    <Text>
+                        Sample application created by UW Bothell faculty and students to demonstrate
+                        use of React Native framework to access web services.
+                    </Text>
                 </Layout>
             </SafeAreaView>
         );

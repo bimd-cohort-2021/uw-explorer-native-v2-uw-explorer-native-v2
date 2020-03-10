@@ -16,8 +16,8 @@ const data = [
         name: 'Campus'
     },
     {
-        title: 'Menu Item 3',
-        name: 'About'
+        title: 'Departments',
+        name: 'Department'
     },
     {
         title: 'Menu Item 4',

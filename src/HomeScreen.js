@@ -27,9 +27,8 @@ class HomeScreen extends React.Component {
             <SafeAreaView style={{flex: 1}}>
                 <TopNavigation title="Home" alignmment="center" leftControl={this.renderNavigate()}/>
                 <Divider/>
-                <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <Text category='h1'>HOME</Text>
-                    <Button title="Details" onPress={() => navigation.navigate("About")}/>
+                <Layout style={{flex: 1,padding:20}}>
+                    <Text category='h1'>UW Explorer</Text>
                 </Layout>
             </SafeAreaView>
         );

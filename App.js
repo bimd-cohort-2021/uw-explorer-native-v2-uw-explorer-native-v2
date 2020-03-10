@@ -9,6 +9,7 @@ import HomeScreen from "./src/HomeScreen";
 import AboutScreen from "./src/AboutScreen";
 import CampusScreen from "./src/CampusScreen";
 import DepartmentScreen from "./src/DepartmentScreen";
+import IMDCourses from "./src/IMDCourses";
 import settings from "./config";
 import {SafeAreaView} from "react-native-web";
 
@@ -41,6 +42,8 @@ class App extends React.Component {
                 'Application-Id': settings.sws.applicationID
             },
         };
+
+        
 
         // Call SWS web service and process results using promises that handle the asynchronous
         // aspects of the call-- that is the code waits on the previous code as completed through
@@ -98,6 +101,7 @@ class App extends React.Component {
                                     initialParams={this.state}/>
                                 <Stack.Screen name="Department" component={DepartmentScreen}
                                               initialParams={this.state}/>
+                                <Stack.Screen name="IMD" component={IMDCourses}/>
                             </Stack.Navigator>
                         </NavigationContainer>
                     ):(

@@ -20,8 +20,8 @@ const data = [
         name: 'Department'
     },
     {
-        title: 'Menu Item 4',
-        name: 'About'
+        title: 'IMD Courses',
+        name: 'IMD'
     },
 ];
 

@@ -60,6 +60,35 @@ class App extends React.Component {
 
     }
 
+    loadCourses() {
+        // Initialize call to a web service. The config.json file contains default settings for
+        // this application to use rather than hard-code these into component source files.
+        let url = settings.sws.baseURL + "/student/v5/course.json?year=2020&quarter=spring&future_terms=0&curriculum_abbreviation=B+IMD&course_number=&course_title_starts=&course_title_contains=&page_size=20";
+
+        // Add a header containing a custom header used by the proxy to authenticate this call
+        let requestInit = {
+            headers: {
+                'Application-Id': settings.sws.applicationID
+            },
+        };
+
+        
+
+        // Call SWS web service and process results using promises that handle the asynchronous
+        // aspects of the call-- that is the code waits on the previous code as completed through
+        // the "then" phrases. Note that "fetch" makes the AJAX call to the web service.
+        fetch(url, requestInit)
+            .then(res => res.json())
+            .then((data) => {
+                // Update the state of this component so that the data retrieved will be rendered
+                this.setState({ courses: data, loadingFlag: this.state.loadingFlag+1 });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+    }
+
     loadColleges() {
         // Initialize call to a web service. The config.json file contains default settings for
         // this application to use rather than hard-code these into component source files.

@@ -142,7 +142,7 @@ class App extends React.Component {
                         </NavigationContainer>
                     ):(
                         <SafeAreaView style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text>Loading Cache...</Text>
+                            <Text>Loading ALL THE THINGS!!!!!...</Text>
                             <Spinner/>
                         </SafeAreaView>
                         )}

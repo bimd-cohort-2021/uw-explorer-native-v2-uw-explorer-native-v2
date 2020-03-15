@@ -1,3 +1,10 @@
+/*
+*
+*  Jess adding a new comment!!!! Changes made ready to upload!
+*
+ */
+
+
 import { AppRegistry, Platform } from 'react-native';
 import App from './App';
 

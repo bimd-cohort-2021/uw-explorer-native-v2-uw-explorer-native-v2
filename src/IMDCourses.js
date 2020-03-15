@@ -27,11 +27,11 @@ class IMDCourses extends React.Component {
     render() {
         return (
             <SafeAreaView style={{flex: 1}}>
-                <TopNavigation title="Campuses" alignmment="center" leftControl={this.renderNavigateBack()} />
+                <TopNavigation title="IMD Courses" alignmment="center" leftControl={this.renderNavigateBack()} />
                 <Divider/>
                 <Layout style={{flex: 1, padding: 20}}>
-                    <Text category='h1'>Campuses</Text>
-                    <List data={this.props.route.params.campuses.Campuses}
+                    <Text category='h1'>IMD Courses</Text>
+                    <List data={this.props.route.params.courses.Courses}
                           renderItem={({item,index}) => {
                               return (
                                   <ListItem title={item.CampusName}/>

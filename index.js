@@ -11,6 +11,8 @@ import App from './App';
 AppRegistry.registerComponent('UWExplorer', () => App);
 
 if (Platform.OS === 'web') {
+
   const rootTag = document.getElementById('root') || document.getElementById('main');
   AppRegistry.runApplication('UWExplorer', { rootTag });
+
 }

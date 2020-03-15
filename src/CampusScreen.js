@@ -9,7 +9,8 @@ const BackIcon = (style) => (
 
 class CampusScreen extends React.Component {
 
-    constructor(props) {
+    constructor(props)
+    {
         super(props);
         this.handleBack = this.handleBack.bind(this);
     }
@@ -36,6 +37,7 @@ class CampusScreen extends React.Component {
                               return (
                                   <ListItem title={item.CampusName}/>
                               )
+
                           }}/>
                 </Layout>
             </SafeAreaView>

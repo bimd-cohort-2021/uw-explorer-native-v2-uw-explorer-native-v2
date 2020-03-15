@@ -1,3 +1,10 @@
+/*
+*
+*  Jess adding a new comment!!!! Changes made ready to upload!
+*
+ */
+
+
 import React from 'react';
 import { ApplicationProvider, IconRegistry, Spinner, Text} from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
@@ -43,7 +50,7 @@ class App extends React.Component {
             },
         };
 
-        
+
 
         // Call SWS web service and process results using promises that handle the asynchronous
         // aspects of the call-- that is the code waits on the previous code as completed through

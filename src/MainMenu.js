@@ -20,6 +20,10 @@ const data = [
         name: 'Department'
     },
     {
+        title: 'Degrees',
+        name: 'Degree'
+    },
+    {
         title: 'IMD Courses',
         name: 'IMD'
     },

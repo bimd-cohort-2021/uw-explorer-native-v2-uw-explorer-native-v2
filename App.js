@@ -17,6 +17,7 @@ import AboutScreen from "./src/AboutScreen";
 import CampusScreen from "./src/CampusScreen";
 import DepartmentScreen from "./src/DepartmentScreen";
 import IMDCourses from "./src/IMDCourses";
+import DegreeScreen from "./src/DegreeScreen";
 import settings from "./config";
 import {SafeAreaView} from "react-native-web";
 
@@ -29,6 +30,8 @@ class App extends React.Component {
         this.state = {
             campuses: null,
             colleges: null,
+            departments: null,
+            degrees: null,
             loadingFlag: -2,
         };
     }
@@ -50,7 +53,7 @@ class App extends React.Component {
             },
         };
 
-
+        
 
         // Call SWS web service and process results using promises that handle the asynchronous
         // aspects of the call-- that is the code waits on the previous code as completed through
@@ -79,7 +82,7 @@ class App extends React.Component {
             },
         };
 
-        
+
 
         // Call SWS web service and process results using promises that handle the asynchronous
         // aspects of the call-- that is the code waits on the previous code as completed through
@@ -134,8 +137,10 @@ class App extends React.Component {
                                 <Stack.Screen name="Home" component={HomeScreen}/>
                                 <Stack.Screen name="About" component={AboutScreen}/>
                                 <Stack.Screen name="Campus" component={CampusScreen}
-                                    initialParams={this.state}/>
+                                              initialParams={this.state}/>
                                 <Stack.Screen name="Department" component={DepartmentScreen}
+                                              initialParams={this.state}/>
+                                <Stack.Screen name="Degree" component={DegreeScreen}
                                               initialParams={this.state}/>
                                 <Stack.Screen name="IMD" component={IMDCourses}/>
                             </Stack.Navigator>

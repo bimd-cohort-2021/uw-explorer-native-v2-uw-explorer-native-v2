@@ -77,6 +77,7 @@ class DegreeScreen extends React.Component {
         this.setState({departmentList: departmentList, department: department});
     }
 
+    //load campuses at mount
     componentDidMount() {
         this.loadCampuses();
     }
@@ -90,7 +91,6 @@ class DegreeScreen extends React.Component {
         }
         this.setState({campusList: campusList, campus: {text: null}, collegeList: [],});
     }
-
 
     // loadDepartments - call web service to return departments unique to current college selection
     loadDepartments(college) {
